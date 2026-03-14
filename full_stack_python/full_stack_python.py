@@ -7,13 +7,16 @@ from rxconfig import config
 
 class State(rx.State):
     """The app state."""
-    label = "Label original!"
+    label = "Welcome to Reflex!"
+    click = "Hiciste click!"
 
-    def cambiar_label(self):
-        if self.label == "Label original!":
-            self.label = "Label modificado!"
-        else:
-            self.label = "Label original!"
+
+    def cambiar_titulo_input(self, val):
+        self.label = val
+
+    def hacer_click(self):
+        print(self.click)
+
 
 
 def index() -> rx.Component:
@@ -21,13 +24,17 @@ def index() -> rx.Component:
     return rx.container(
         rx.color_mode.button(position="top-right"),
         rx.vstack(
-            rx.heading(State.label, " Welcome to Reflex!", size="9"),
+            rx.heading(State.label, size="9"),
             rx.text(
                 "Get started by editing ",
                 rx.code(f"{config.app_name}/{config.app_name}.py"),
                 size="5",
             ),
-            rx.button("Haz algo!", on_click=State.cambiar_label),
+            rx.input(
+                default_value=State.label,
+                on_click=State.hacer_click,
+                on_change=State.cambiar_titulo_input
+            ),
             rx.link(
                 rx.button("Check out our docs!"),
                 href="https://reflex.dev/docs/getting-started/introduction/",
