@@ -7,13 +7,17 @@ from ..state import State
 # Con -> rx.Component se dice que la función debe ser un componente de Reflex
 # child: rx.Component se refiere al contenido y a rx.vstack
 def pagina_base(child: rx.Component, *args, **kwargs) -> rx.Component:
-    return rx.container(
+    return rx.fragment( # fragment no hace nada
         # Si la variable de estado navbar_escondido es verderdadera navbar() se renderiza, sino no
         rx.cond(
             State.navbar_escondido,
             rx.fragment(),
             navbar(),
         ),
-        child,
+        rx.box(
+            child,
+            padding="1em",
+            width="100%",
+        ),
         rx.color_mode.button(position="bottom-right"),
     )
