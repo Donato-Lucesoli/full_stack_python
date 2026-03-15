@@ -1,4 +1,5 @@
 import reflex as rx
+from .. import navigation
 
 def navbar_link(text: str, url: str) -> rx.Component:
     return rx.link(rx.text(text, size="4", weight="medium"), href=url)
@@ -19,10 +20,10 @@ def navbar() -> rx.Component:
                     align_items="center",
                 ),
                 rx.hstack(
-                    navbar_link("Home", "/"),
-                    navbar_link("About", "/acerca"),
-                    navbar_link("Pricing", "/precios"),
-                    navbar_link("Contact", "/#"),
+                    navbar_link("Home", navigation.routes.CASA_ROUTE),
+                    navbar_link("About", navigation.routes.ACERCA_ROUTE),
+                    navbar_link("Pricing", navigation.routes.PRECIOS_ROUTE),
+                    navbar_link("Contact", navigation.routes.CONTACTO_ROUTE),
                     spacing="5",
                 ),
                 rx.hstack(

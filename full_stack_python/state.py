@@ -1,4 +1,5 @@
 import reflex as rx
+from . import navigation
 
 
 class State(rx.State):
@@ -18,4 +19,4 @@ class State(rx.State):
         self.navbar_escondido = not self.navbar_escondido
 
     def redirigir_acerca(self):
-        return rx.redirect("/acerca")
+        return rx.redirect(navigation.routes.ACERCA_ROUTE)

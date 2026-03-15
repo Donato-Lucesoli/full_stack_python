@@ -5,7 +5,7 @@ import reflex as rx
 from rxconfig import config
 from .ui.base import pagina_base
 from .state import State
-from . import pages
+from . import pages, navigation
 
 def index() -> rx.Component:
     # Welcome Page (Index)
@@ -25,15 +25,17 @@ def index() -> rx.Component:
             "Mostrar / Esconder Navbar",
             on_click=State.esconder_aparecer_navbar
         ),
-        rx.link(
-            rx.button("Acerca de la app, mediante href"),
-            href="/acerca",
-            is_external=False, # is_external = True abre una nueva pestaña
+        rx.hstack(
+            rx.link(
+                rx.button("Acerca de la app, mediante href"),
+                href=navigation.routes.ACERCA_ROUTE,
+                is_external=False, # is_external = True abre una nueva pestaña
+                ),
+            rx.button(
+                "Acerca de la app, mediante on_click", 
+                on_click=State.redirigir_acerca,
+                ),
         ),
-        rx.button(
-            "Acerca de la app, mediante on_click", 
-            on_click=State.redirigir_acerca,
-            ),
         spacing="5",
         justify="center",
         min_height="85vh",
@@ -44,5 +46,5 @@ def index() -> rx.Component:
 
 app = rx.App()
 app.add_page(index)
-app.add_page(pages.acerca_de_la_app, route="/acerca")
-app.add_page(pages.precios, route="/precios")
+app.add_page(pages.acerca_de_la_app, route=navigation.routes.ACERCA_ROUTE)
+app.add_page(pages.precios, route=navigation.routes.PRECIOS_ROUTE)
