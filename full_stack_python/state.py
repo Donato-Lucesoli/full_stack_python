@@ -16,3 +16,6 @@ class State(rx.State):
 
     def esconder_aparecer_navbar(self):
         self.navbar_escondido = not self.navbar_escondido
+
+    def redirigir_acerca(self):
+        return rx.redirect("/acerca")

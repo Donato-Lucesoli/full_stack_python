@@ -26,10 +26,14 @@ def index() -> rx.Component:
             on_click=State.esconder_aparecer_navbar
         ),
         rx.link(
-            rx.button("Check out our docs!"),
-            href="https://reflex.dev/docs/getting-started/introduction/",
-            is_external=True,
+            rx.button("Acerca de la app, mediante href"),
+            href="/acerca",
+            is_external=False, # is_external = True abre una nueva pestaña
         ),
+        rx.button(
+            "Acerca de la app, mediante on_click", 
+            on_click=State.redirigir_acerca,
+            ),
         spacing="5",
         justify="center",
         min_height="85vh",
