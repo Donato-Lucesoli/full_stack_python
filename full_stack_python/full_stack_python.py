@@ -5,6 +5,7 @@ import reflex as rx
 from rxconfig import config
 from .ui.base import pagina_base
 from .state import State
+from . import pages
 
 def index() -> rx.Component:
     # Welcome Page (Index)
@@ -39,3 +40,5 @@ def index() -> rx.Component:
 
 app = rx.App()
 app.add_page(index)
+app.add_page(pages.acerca_de_la_app, route="/acerca")
+app.add_page(pages.precios, route="/precios")
