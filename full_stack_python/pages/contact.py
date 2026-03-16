@@ -4,6 +4,13 @@ from ..ui.base import pagina_base
 from .. import navigation
 import asyncio
 
+
+class ContactEntryModel(rx.Model, table=True):
+    full_name: str
+    email: str
+    message: str
+
+
 class ContactState(rx.State):
     form_data: dict = {}
     did_submit: bool = False
@@ -18,8 +25,23 @@ class ContactState(rx.State):
     @rx.event
     async def handle_submit(self, form_data: dict):
         self.form_data = form_data
-        self.did_submit = True
-        yield
+        data_copy = {}
+
+        for key, value in form_data:
+            if value == "" or value is None:
+                continue
+            else:
+                data_copy[key] = value
+        print(data_copy)
+        
+        with rx.session() as session:
+            db_entry = ContactEntryModel(
+                **data_copy
+            )
+            session.add(db_entry)
+            session.commit()
+            self.did_submit = True
+            yield
 
         # Agregamos un límite de aparición
         await asyncio.sleep(3) 
