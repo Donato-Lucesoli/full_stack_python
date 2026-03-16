@@ -4,11 +4,14 @@ from ..ui.base import pagina_base
 from .. import navigation
 import asyncio
 
+# from sqlmodel import Field
+
 
 class ContactEntryModel(rx.Model, table=True):
-    full_name: str
-    email: str
-    message: str
+    first_name: str
+    last_name: str | None = None
+    email: str | None = None # Es lo mismo que Field(nullable=True)
+    message: str 
 
 
 class ContactState(rx.State):
@@ -27,13 +30,13 @@ class ContactState(rx.State):
         self.form_data = form_data
         data_copy = {}
 
-        for key, value in form_data:
+        for key, value in form_data.items():
             if value == "" or value is None:
                 continue
             else:
                 data_copy[key] = value
         print(data_copy)
-        
+
         with rx.session() as session:
             db_entry = ContactEntryModel(
                 **data_copy
@@ -56,10 +59,10 @@ def contact_page() -> rx.Component:
         rx.vstack(
             rx.hstack(
                 rx.input(placeholder="First Name", name="first_name", required=True, width="100%"),
-                rx.input(placeholder="Last Name", name="last_name", required=True, width="100%"),
+                rx.input(placeholder="Last Name", name="last_name", width="100%"),
                 width="100%"
             ),
-            rx.input(placeholder="Email", name="email", type="mail", required=True, width="100%"),
+            rx.input(placeholder="Email", name="email", type="mail", width="100%"),
             rx.text_area(placeholder="Tu mensaje", name="mensaje", required=True, width="100%"),
             rx.button("Submit", type="submit"),
             align="center"
