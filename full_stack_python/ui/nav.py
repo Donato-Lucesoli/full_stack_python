@@ -1,6 +1,7 @@
 import reflex as rx
 from .. import navigation
 
+
 def navbar_link(text: str, url: str) -> rx.Component:
     return rx.link(rx.text(text, size="4", weight="medium"), href=url)
 
@@ -20,10 +21,10 @@ def navbar() -> rx.Component:
                     align_items="center",
                 ),
                 rx.hstack(
-                    navbar_link("Home", navigation.routes.CASA_ROUTE),
-                    navbar_link("About", navigation.routes.ACERCA_ROUTE),
-                    navbar_link("Pricing", navigation.routes.PRECIOS_ROUTE),
-                    navbar_link("Contact", navigation.routes.CONTACTO_ROUTE),
+                    navbar_link("Home", navigation.routes.HOME_ROUTE),
+                    navbar_link("About", navigation.routes.ABOUT_ROUTE),
+                    navbar_link("Pricing", navigation.routes.PRICNG_ROUTE),
+                    navbar_link("Contact", navigation.routes.CONTACT_ROUTE),
                     spacing="5",
                 ),
                 rx.hstack(
@@ -48,10 +49,10 @@ def navbar() -> rx.Component:
                 rx.menu.root(
                     rx.menu.trigger(rx.icon("menu", size=30)),
                     rx.menu.content(
-                        rx.menu.item("Home"),
-                        rx.menu.item("About"),
-                        rx.menu.item("Pricing"),
-                        rx.menu.item("Contact"),
+                        rx.menu.item("Home", on_click=navigation.NavState.to_home),
+                        rx.menu.item("About", on_click=navigation.NavState.to_about),
+                        rx.menu.item("Pricing", on_click=navigation.NavState.to_pricing),
+                        rx.menu.item("Contact", on_click=navigation.NavState.to_contact),
                         rx.menu.separator(),
                         rx.menu.item("Log in"),
                         rx.menu.item("Sign up"),

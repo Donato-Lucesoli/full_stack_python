@@ -1,6 +1,9 @@
-from .pages import acerca_de_la_app, precios
+from .about import about_page
+from .pricing import pricing_page
+from .contact import contact_page
 
 __all__ = [
-    "acerca_de_la_app",
-    "precios"
+    'contact_page',
+    'about_page',
+    'pricing_page'
 ]

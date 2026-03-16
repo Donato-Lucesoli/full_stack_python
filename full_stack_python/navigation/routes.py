@@ -1,4 +1,4 @@
-CASA_ROUTE = "/"
-ACERCA_ROUTE = "/acerca"
-CONTACTO_ROUTE ="/contacto"
-PRECIOS_ROUTE = "/precios"
+HOME_ROUTE = "/"
+ABOUT_ROUTE = "/about"
+CONTACT_ROUTE ="/contact"
+PRICNG_ROUTE = "/pricing"

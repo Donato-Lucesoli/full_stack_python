@@ -19,4 +19,4 @@ class State(rx.State):
         self.navbar_escondido = not self.navbar_escondido
 
     def redirigir_acerca(self):
-        return rx.redirect(navigation.routes.ACERCA_ROUTE)
+        return rx.redirect(navigation.routes.ABOUT_ROUTE)

@@ -28,7 +28,7 @@ def index() -> rx.Component:
         rx.hstack(
             rx.link(
                 rx.button("Acerca de la app, mediante href"),
-                href=navigation.routes.ACERCA_ROUTE,
+                href=navigation.routes.ABOUT_ROUTE,
                 is_external=False, # is_external = True abre una nueva pestaña
                 ),
             rx.button(
@@ -46,5 +46,5 @@ def index() -> rx.Component:
 
 app = rx.App()
 app.add_page(index)
-app.add_page(pages.acerca_de_la_app, route=navigation.routes.ACERCA_ROUTE)
-app.add_page(pages.precios, route=navigation.routes.PRECIOS_ROUTE)
+app.add_page(pages.about_page, route=navigation.routes.ABOUT_ROUTE)
+app.add_page(pages.pricing_page, route=navigation.routes.PRICNG_ROUTE)
